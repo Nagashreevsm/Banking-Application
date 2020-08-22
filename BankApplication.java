@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class BankApplication {
     static class BankAccount{
         int customerId;
         String customerName;
