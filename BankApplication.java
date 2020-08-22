@@ -7,9 +7,7 @@ public class BankApplication {
         int balance;
         int prevTransaction;
 
-        BankAccount(String cName, int cID){
-            this.customerId = cID;
-            this.customerName = cName;
+        void openAccount(){
         }
 
         void setDeposit(int amount){
@@ -42,11 +40,12 @@ public class BankApplication {
             System.out.println("Welcome "+customerName);
             System.out.println("Your CID is "+customerId);
             System.out.println();
-            System.out.println("A : Check Balance");
-            System.out.println("B : Deposit Amount");
-            System.out.println("C : Withdraw Amount");
-            System.out.println("D : Previous Transactions");
-            System.out.println("E : Exit");
+            System.out.println("A : Create Account");
+            System.out.println("B : Check Balance");
+            System.out.println("C : Deposit Amount");
+            System.out.println("D : Withdraw Amount");
+            System.out.println("E : Previous Transactions");
+            System.out.println("F : Exit");
 
             do {
                 System.out.println("===================================================================================================================");
@@ -56,35 +55,51 @@ public class BankApplication {
                 System.out.println();
 
                 switch (option){
-                    case 'A' :
+                    case 'A':
+                        System.out.println("-------------------------------------------------------------------------------------------------------------");
+                        System.out.println("Enter your name ");
+                        String name = sc.nextLine();
+                        sc.nextLine();
+                        System.out.println("Enter your account number");
+                        int acc_no = sc.nextInt();
+                        System.out.println("------------------------------------------------------------------------------------------------------------");
+                        System.out.println("Account created successfully");
+                        break;
+
+                    case 'B' :
                         System.out.println("-----------------------------------------------------------------------------------------------------------");
                         System.out.println("Your balance is : "+balance);
                         System.out.println("-----------------------------------------------------------------------------------------------------------");
                         System.out.println();
                         break;
-                    case 'B':
+                        
+                    case 'C':
                         System.out.println("-----------------------------------------------------------------------------------------------------------");
                         System.out.println("Enter amount to be deposited: ");
                         System.out.println("-----------------------------------------------------------------------------------------------------------");
                         setDeposit(sc.nextInt());
                         System.out.println();
                         break;
-                    case 'C':
+                        
+                    case 'D':
                         System.out.println("------------------------------------------------------------------------------------------------------------");
                         System.out.println("Enter amount to be withdrawn: ");
                         System.out.println("------------------------------------------------------------------------------------------------------------");
                         withdraw(sc.nextInt());
                         System.out.println();
                         break;
-                    case 'D':
+                        
+                    case 'E':
                         System.out.println("------------------------------------------------------------------------------------------------------------");
                         getPreTransaction();
                         System.out.println("------------------------------------------------------------------------------------------------------------");
                         System.out.println();
                         break;
-                    case 'E':
+                        
+                    case 'F':
                         System.out.println("************************************************************************************************************");
                         break;
+                        
                     default:
                         System.out.println("Invalid option! Please enter again");
                         break;
@@ -92,14 +107,11 @@ public class BankApplication {
 
             }while (option!='E');
                 System.out.println("Thank you for using our services");
-
         }
     }
 
     public static void main(String[] args) {
-        BankAccount b1 = new BankAccount("Aditya VSM",123);
+        BankAccount b1 = new BankAccount();
         b1.showMenu();
     }
-
-
 }
