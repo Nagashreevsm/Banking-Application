@@ -1,14 +1,13 @@
 import java.util.Scanner;
 
 public class BankApplication {
+    static Scanner sc = new Scanner(System.in);
     static class BankAccount{
         int customerId;
         String customerName;
         int balance;
         int prevTransaction;
 
-        void openAccount(){
-        }
 
         void setDeposit(int amount){
             if (amount!=0){
@@ -37,14 +36,21 @@ public class BankApplication {
         void showMenu(){
             char option;
             Scanner sc = new Scanner(System.in);
+            System.out.println("Enter your name ");
+            customerName = sc.nextLine();
+            System.out.println("Enter your account number");
+            customerId = sc.nextInt();
+            System.out.println("------------------------------------------------------------------------------------------------------------");
+            System.out.println("Account created successfully");
             System.out.println("Welcome "+customerName);
             System.out.println("Your CID is "+customerId);
-            System.out.println();
-            System.out.println("A : Create Account");
-            System.out.println("B : Check Balance");
-            System.out.println("C : Deposit Amount");
-            System.out.println("D : Withdraw Amount");
-            System.out.println("E : Previous Transactions");
+
+            System.out.printf("\n\n");
+            System.out.println("A : Check Balance");
+            System.out.println("B : Deposit Amount");
+            System.out.println("C : Withdraw Amount");
+            System.out.println("D : Previous Transactions");
+            System.out.println("E : Neft");
             System.out.println("F : Exit");
 
             do {
@@ -55,58 +61,63 @@ public class BankApplication {
                 System.out.println();
 
                 switch (option){
-                    case 'A':
-                        System.out.println("-------------------------------------------------------------------------------------------------------------");
-                        System.out.println("Enter your name ");
-                        String name = sc.nextLine();
-                        sc.nextLine();
-                        System.out.println("Enter your account number");
-                        int acc_no = sc.nextInt();
-                        System.out.println("------------------------------------------------------------------------------------------------------------");
-                        System.out.println("Account created successfully");
-                        break;
-
-                    case 'B' :
+                    case 'A' :
                         System.out.println("-----------------------------------------------------------------------------------------------------------");
                         System.out.println("Your balance is : "+balance);
                         System.out.println("-----------------------------------------------------------------------------------------------------------");
                         System.out.println();
                         break;
-                        
-                    case 'C':
+
+                    case 'B':
                         System.out.println("-----------------------------------------------------------------------------------------------------------");
                         System.out.println("Enter amount to be deposited: ");
                         System.out.println("-----------------------------------------------------------------------------------------------------------");
                         setDeposit(sc.nextInt());
                         System.out.println();
                         break;
-                        
-                    case 'D':
+
+                    case 'C':
                         System.out.println("------------------------------------------------------------------------------------------------------------");
                         System.out.println("Enter amount to be withdrawn: ");
                         System.out.println("------------------------------------------------------------------------------------------------------------");
                         withdraw(sc.nextInt());
                         System.out.println();
                         break;
-                        
-                    case 'E':
+
+                    case 'D':
                         System.out.println("------------------------------------------------------------------------------------------------------------");
                         getPreTransaction();
                         System.out.println("------------------------------------------------------------------------------------------------------------");
                         System.out.println();
                         break;
-                        
-                    case 'F':
-                        System.out.println("************************************************************************************************************");
+
+                    case 'E':
+                        System.out.println("------------------------------------------------------------------------------------------------------------");
+                        System.out.println("Enter amount to NEFT");
+                        int amount1 = sc.nextInt();
+                        if (amount1<=balance && amount1!=0) {
+                            System.out.println("Enter account number of receiver ");
+                            int toAcc = sc.nextInt();
+                            System.out.println("Enter balance of receiver account");
+                            int balance2 = sc.nextInt();
+                            balance2 += amount1;
+                            balance -= amount1;
+                            System.out.printf("After NEFT transfer:\n from acc balance \t to acc balance \n " + balance + " \t\t\t\t\t " + balance2 + "\n");
+                        }else
+                            System.out.println("Your balance is too low for Neft request ");
                         break;
-                        
+
+                    case 'F':
+                        System.out.println("**************************************************************************************************************");
+                        break;
+
                     default:
                         System.out.println("Invalid option! Please enter again");
                         break;
                 }
 
-            }while (option!='E');
-                System.out.println("Thank you for using our services");
+            }while (option!='F');
+            System.out.println("Thank you for using our services");
         }
     }
 
